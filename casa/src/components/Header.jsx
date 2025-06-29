@@ -1,31 +1,24 @@
 import React from "react";
-import { FaPhoneAlt, FaFacebookF, FaInstagram, FaHeart, FaUser, FaShoppingCart } from "react-icons/fa";
-import logo from './img/logo.png';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaHeart,
+  FaUser,
+  FaShoppingCart,
+} from "react-icons/fa";
+import logo from "../img/logo.png";
 
 const Header = () => {
   return (
     <header className="w-full">
 
-      {/* Barra superior de arriba */}
-      <div className="bg-teal-700 text-white text-sm">
-        <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 py-4">
-
-          {/* Teléfono */}
-          <div className="flex items-center gap-2">
-            <FaPhoneAlt />
-            <span className="font-semibold">912294034</span>
-          </div>
-
-          {/* Texto central */}
-          <div className="hidden md:block font-semibold">
-            ¡Realiza tu pedido aquí!
-          </div>
-
-          {/* Redes sociales */}
-          <div className="flex items-center gap-4">
-            <FaFacebookF className="cursor-pointer hover:text-gray-200" />
-            <FaInstagram className="cursor-pointer hover:text-gray-200" />
-          </div>
+      {/* Barra animada superior */}
+      <div className="bg-teal-500 overflow-hidden h-[32px]">
+        <div className="animate-marquee whitespace-nowrap text-white text-sm font-semibold flex gap-16 px-4">
+          <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
+           <span>Envio gratis a partir de S/100</span>
+           <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
+           <span>Envio gratis a partir de S/100</span>
         </div>
       </div>
 
@@ -44,7 +37,6 @@ const Header = () => {
             <li><a href="#" className="hover:text-orange-500 font-semibold">Tienda</a></li>
             <li><a href="#" className="hover:text-orange-500">Recetas</a></li>
             <li><a href="#" className="hover:text-orange-500">Carrito</a></li>
-            <li><a href="#" className="hover:text-orange-500">Finalizar compra</a></li>
           </ul>
 
           {/* Íconos */}
@@ -62,7 +54,6 @@ const Header = () => {
 
         </div>
       </nav>
-
     </header>
   );
 };

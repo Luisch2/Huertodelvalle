@@ -12,12 +12,15 @@ export default function CentralUsuario() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen h-screen bg-[#f9f9f9]">
+    <div className="flex flex-col md:flex-row min-h-full bg-[#f9f9f9]">
+
       {/* Sidebar siempre visible en desktop y tipo dropdown en móvil */}
       <Sidebar onClose={() => setSidebarOpen(false)} />
 
       {/* Contenido */}
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 pb-[10px]">
+
+
         <Routes>
           <Route path="" element={<Dashboard />} />
           <Route path="mis-datos" element={<Datos />} />
