@@ -1,7 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"; // Asegúrate de que esta ruta sea correcta
 
 export default function Sidebar({ onClose = () => {} }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth(); // Este método debes tenerlo en tu AuthContext
+
+  const handleLogout = () => {
+    logout();             // Cierra sesión
+    navigate("/");        // Redirige a página principal
+  };
 
   const menuItems = [
     { label: "Mi cuenta", path: "" },
@@ -40,15 +48,7 @@ export default function Sidebar({ onClose = () => {} }) {
                   transition-all duration-200
                   ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
               />
-
               {item.label}
-
-              {/* Badge si existe */}
-              {item.badge && (
-                <span className="ml-2 text-xs bg-lime-300 text-black px-2 rounded-full font-semibold">
-                  {item.badge}
-                </span>
-              )}
             </Link>
           );
         })}
@@ -56,7 +56,12 @@ export default function Sidebar({ onClose = () => {} }) {
 
       {/* Cerrar sesión */}
       <div className="mt-10">
-        <button className="text-[15px] font-bold text-gray-800">Cerrar Sesión</button>
+        <button
+          onClick={handleLogout}
+          className="text-[15px] font-bold text-gray-800 hover:text-red-600 transition"
+        >
+          Cerrar Sesión
+        </button>
       </div>
     </aside>
   );

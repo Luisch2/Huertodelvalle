@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -7,25 +7,37 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import logo from "../img/logo.png";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleClick = () => {
+    if (user) {
+      navigate("/usuario");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <header className="w-full">
-
       {/* Barra animada superior */}
       <div className="bg-teal-500 overflow-hidden h-[32px]">
         <div className="animate-marquee whitespace-nowrap text-white text-sm font-semibold flex gap-16 px-4">
-          <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
-           <span>Envio gratis a partir de S/100</span>
-           <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
-           <span>Envio gratis a partir de S/100</span>
+          <span>¡Realiza tu pedido aquí y obten un cupón de descuento!</span>
+          <span>Envío gratis a partir de S/100</span>
+          <span>¡Realiza tu pedido aquí y obten un cupón de descuento!</span>
+          <span>Envío gratis a partir de S/100</span>
         </div>
       </div>
 
       {/* Menú principal */}
       <nav className="bg-white shadow">
         <div className="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
-
           {/* Logo */}
           <div>
             <img src={logo} alt="Logo" className="w-14 h-14 object-contain" />
@@ -40,9 +52,29 @@ const Header = () => {
           </ul>
 
           {/* Íconos */}
-          <div className="flex items-center gap-5 text-teal-800 text-lg">
+          <div className="flex items-center gap-5 text-teal-800 text-lg relative">
             <FaHeart />
-            <FaUser />
+
+            {/* Ícono de Usuario con dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setShowDropdown(true)}
+              onMouseLeave={() => setShowDropdown(false)}
+            >
+              <FaUser
+                onClick={handleClick}
+                className="cursor-pointer"
+              />
+              {showDropdown && (
+                <div className="absolute top-8 left-[-20px] bg-white border shadow p-2 text-sm rounded z-50 w-[120px]">
+                  <span className="block hover:text-orange-500 cursor-pointer" onClick={handleClick}>
+                    {user ? "Mi cuenta" : "Iniciar sesión"}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Carrito */}
             <div className="flex items-center gap-1 text-sm relative">
               <span>S/0,00</span>
               <div className="relative">
@@ -51,7 +83,6 @@ const Header = () => {
               </div>
             </div>
           </div>
-
         </div>
       </nav>
     </header>
