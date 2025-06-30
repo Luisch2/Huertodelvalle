@@ -13,12 +13,12 @@ const Header = () => {
     <header className="w-full">
 
       {/* Barra animada superior */}
-      <div className="bg-teal-500 overflow-hidden h-[32px]">
+      <div className="bg-teal-500 overflow-hidden h-[32px] flex justify-center items-center">
         <div className="animate-marquee whitespace-nowrap text-white text-sm font-semibold flex gap-16 px-4">
           <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
-           <span>Envio gratis a partir de S/100</span>
-           <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
-           <span>Envio gratis a partir de S/100</span>
+          <span>Envio gratis a partir de S/100</span>
+          <span>¡Realiza tu pedido aquí y obten un cupon de descuento!</span>
+          <span>Envio gratis a partir de S/100</span>
         </div>
       </div>
 
